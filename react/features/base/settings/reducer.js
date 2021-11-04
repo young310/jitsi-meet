@@ -41,7 +41,7 @@ const DEFAULT_STATE = {
     userSelectedAudioOutputDeviceLabel: undefined,
     userSelectedCameraDeviceLabel: undefined,
     userSelectedMicDeviceLabel: undefined,
-    userSelectedSkipPrejoin: undefined
+    userSelectedSkipPrejoin: false
 };
 
 const STORE_NAME = 'features/base/settings';
@@ -53,7 +53,9 @@ const filterSubtree = {};
 
 // start with the default state
 Object.keys(DEFAULT_STATE).forEach(key => {
-    filterSubtree[key] = true;
+    if (typeof filterSubtree[key] === 'undefined') {
+        filterSubtree[key] = true;
+    }
 });
 
 // we want to filter these props, to not be stored as they represent

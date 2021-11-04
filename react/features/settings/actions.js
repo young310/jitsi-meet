@@ -1,10 +1,11 @@
 // @flow
+import { batch } from 'react-redux';
 
 import { setFollowMe, setStartMutedPolicy } from '../base/conference';
 import { openDialog } from '../base/dialog';
 import { i18next } from '../base/i18n';
 import { updateSettings } from '../base/settings';
-import { setPrejoinPageVisibility } from '../prejoin/actions';
+import { setPrejoinPageVisibility, setSkipPrejoinIsChanging } from '../prejoin/actions';
 import { setScreenshareFramerate } from '../screen-share/actions';
 
 import {
@@ -86,9 +87,12 @@ export function submitMoreTab(newState: Object): Function {
             if (showPrejoinPage && getState()['features/prejoin']?.showPrejoin) {
                 dispatch(setPrejoinPageVisibility(false));
             }
-            dispatch(updateSettings({
-                userSelectedSkipPrejoin: !showPrejoinPage
-            }));
+            batch(() => {
+                dispatch(setSkipPrejoinIsChanging(true));
+                dispatch(updateSettings({
+                    userSelectedSkipPrejoin: !showPrejoinPage
+                }));
+            });
         }
 
         if (newState.startAudioMuted !== currentState.startAudioMuted
