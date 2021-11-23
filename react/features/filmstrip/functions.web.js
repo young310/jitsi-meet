@@ -256,6 +256,9 @@ export function computeDisplayMode(input: Object) {
     } = input;
     const adjustedIsVideoPlayable = input.isVideoPlayable && (!isRemoteParticipant || canPlayEventReceived);
 
+    // TODO fix the logic to work with multiple streams
+    return DISPLAY_VIDEO;
+
     if (!tileViewActive && hasOnlyScreenStream && isRemoteParticipant) {
         return isHovered ? DISPLAY_AVATAR_WITH_NAME : DISPLAY_AVATAR;
     } else if (isCurrentlyOnLargeVideo && !tileViewActive) {
