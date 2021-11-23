@@ -822,7 +822,9 @@ class Toolbox extends Component<Props> {
         Object.values(buttons).forEach((button: any) => {
             if (typeof button === 'object') {
                 const notify = this.props._buttonsWithNotifyClick.find(
-                    (btn: string | Object) => btn === button.key || btn.key === button.key
+                    (btn: string | Object) =>
+                        (typeof btn === 'string' && btn === button.key)
+                        || (typeof btn === 'object' && btn.key === button.key)
                 );
 
                 if (notify) {
