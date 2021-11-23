@@ -7,6 +7,7 @@ import { connect } from '../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../base/toolbox/components';
 import { navigate } from '../../conference/components/native/ConferenceNavigationContainerRef';
 import { screen } from '../../conference/components/native/routes';
+import { NOTIFY_CLICK_MODE } from '../../toolbox/constants';
 
 
 type Props = AbstractButtonProps & {
@@ -53,11 +54,13 @@ class SharedDocumentButton extends AbstractButton<Props, *> {
      * @returns {void}
      */
     _handleClick() {
-        const { _editing, handleClick } = this.props;
+        const { _editing, handleClick, notifyMode } = this.props;
 
         if (handleClick) {
             handleClick();
+        }
 
+        if (notifyMode === NOTIFY_CLICK_MODE.PREVENT_AND_NOTIFY) {
             return;
         }
 
