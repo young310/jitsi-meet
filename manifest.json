@@ -1,14 +1,14 @@
 {
-  "android_package_name": "org.jitsi.meet",
+  "android_package_name": "com.ultrondata.meet",
   "prefer_related_applications": true,
   "related_applications": [
     {
-      "id": "org.jitsi.meet",
+      "id": "com.ultrondata.meet",
       "platform": "chromeos_play"
     }
   ],
-  "short_name": "Jitsi Meet",
-  "name": "Jitsi Meet",
+  "short_name": "Meet",
+  "name": "Meet",
   "icons": [
     {
       "src": "static/pwa/icons/icon192.png",
